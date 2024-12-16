@@ -1,6 +1,6 @@
 import { number, select } from "@inquirer/prompts";
 import { maximumChoices } from "./config.js";
-import { greedyAlgorithm } from "./greedy-algorithm.js";
+import { generateGreedySolutions } from "./greedy-algorithm.js";
 import type { Solution } from "./solution.js";
 
 export async function getWithdrawalAmount() {
@@ -22,7 +22,9 @@ export function sanitizeGeneratedSolutions(solutions: Solution[]) {
 }
 
 const withdrawalValue = await getWithdrawalAmount();
-const choices = greedyAlgorithm(withdrawalValue);
+const choices = generateGreedySolutions(withdrawalValue);
+
+if (choices.length === 0) throw "";
 const selectedSolution = await select({
   message: "Escolha quais notas deseja sacar:",
   choices: sanitizeGeneratedSolutions(choices).map((choice) => ({
@@ -31,5 +33,4 @@ const selectedSolution = await select({
   })),
 });
 
-console.log(`found ${choices.length} solutions`);
 console.log(selectedSolution.bankNotes);
