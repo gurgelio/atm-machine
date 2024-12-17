@@ -2,6 +2,15 @@ import { number, select } from "@inquirer/prompts";
 import { generateGreedySolutions } from "./greedy-algorithm.js";
 import type { Solution } from "./solution.js";
 
+const withdrawalValue = await getWithdrawalAmount();
+
+const choices = generateGreedySolutions(withdrawalValue);
+if (choices.length === 0) throw "No solutions found";
+
+const selectedSolution = await getSelectedSolution(choices);
+
+console.log(selectedSolution.bankNotes);
+
 export async function getWithdrawalAmount() {
   const response = await number({
     message: "Qual valor deseja sacar?",
@@ -14,23 +23,14 @@ export async function getWithdrawalAmount() {
   return response;
 }
 
-export function sortSolutions(solutions: Solution[]) {
-  return solutions.toSorted(
-    (a, b) => a.bankNotesAmount() - b.bankNotesAmount(),
-  );
+export async function getSelectedSolution(choices: Solution[]) {
+  return await select({
+    message: "Escolha quais notas deseja sacar:",
+    choices: choices
+      .toSorted((a, b) => a.bankNotesAmount() - b.bankNotesAmount())
+      .map((choice) => ({
+        name: choice.toString(),
+        value: choice,
+      })),
+  });
 }
-
-const withdrawalValue = await getWithdrawalAmount();
-const choices = generateGreedySolutions(withdrawalValue);
-
-if (choices.length === 0) throw "No solutions found";
-
-const selectedSolution = await select({
-  message: "Escolha quais notas deseja sacar:",
-  choices: sortSolutions(choices).map((choice) => ({
-    name: choice.toString(),
-    value: choice,
-  })),
-});
-
-console.log(selectedSolution.bankNotes);
