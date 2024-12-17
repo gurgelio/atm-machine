@@ -2,17 +2,20 @@ import { number, select } from "@inquirer/prompts";
 import { generateSolutions } from "./greedy-algorithm.js";
 import type { Solution } from "./solution.js";
 
-const withdrawalValue = await getWithdrawalAmount();
+main();
 
-try {
+async function main() {
+  const withdrawalValue = await getWithdrawalAmount();
+
   const choices = generateSolutions(withdrawalValue);
-  if (choices.length === 0) throw "No solutions found";
+  if (choices.length === 0) {
+    console.log("Nenhuma combinação encontrada para este valor!");
+    return;
+  }
 
   const selectedSolution = await getSelectedSolution(choices);
 
   console.log(selectedSolution.bankNotes);
-} catch (err) {
-  console.log(err);
 }
 
 export async function getWithdrawalAmount() {
