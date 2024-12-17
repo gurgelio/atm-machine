@@ -1,15 +1,19 @@
 import { number, select } from "@inquirer/prompts";
-import { generateGreedySolutions } from "./greedy-algorithm.js";
+import { generateSolutions } from "./greedy-algorithm.js";
 import type { Solution } from "./solution.js";
 
 const withdrawalValue = await getWithdrawalAmount();
 
-const choices = generateGreedySolutions(withdrawalValue);
-if (choices.length === 0) throw "No solutions found";
+try {
+  const choices = generateSolutions(withdrawalValue);
+  if (choices.length === 0) throw "No solutions found";
 
-const selectedSolution = await getSelectedSolution(choices);
+  const selectedSolution = await getSelectedSolution(choices);
 
-console.log(selectedSolution.bankNotes);
+  console.log(selectedSolution.bankNotes);
+} catch (err) {
+  console.log(err);
+}
 
 export async function getWithdrawalAmount() {
   const response = await number({
