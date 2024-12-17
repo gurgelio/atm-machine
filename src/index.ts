@@ -1,5 +1,5 @@
 import { number, select } from "@inquirer/prompts";
-import { generateSolutions } from "./greedy-algorithm.js";
+import { findSolutions } from "./find-solutions.js";
 import type { Solution } from "./solution.js";
 
 main();
@@ -7,7 +7,7 @@ main();
 async function main() {
   const withdrawalValue = await getWithdrawalAmount();
 
-  const choices = generateSolutions(withdrawalValue);
+  const choices = findSolutions(withdrawalValue);
   if (choices.length === 0) {
     console.log("Nenhuma combinação encontrada para este valor!");
     return;

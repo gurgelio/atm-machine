@@ -12,7 +12,7 @@ const sortedBankNotes = availableBankNotes.toSorted((a, b) => b - a);
  * @param withdrawalValue the amount of money to be withdrawn from the atm
  * @returns an array of Solution, with max length defined by maximumChoices
  */
-export function generateSolutions(withdrawalValue: number): Solution[] {
+export function findSolutions(withdrawalValue: number): Solution[] {
   const solutions: Solution[] = [];
   let currentSolution = solve(new Solution(withdrawalValue), sortedBankNotes);
 

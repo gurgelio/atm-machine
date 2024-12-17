@@ -4,7 +4,7 @@ import type { Solution } from "./solution.js";
 /**
  * @deprecated dangerous after 1000
  */
-export function generateAllChoices(
+export function generateAllSolutions(
   partialSolution: Solution,
   availableBankNotes = [...defaultAvailableBankNotes],
 ) {
@@ -14,7 +14,7 @@ export function generateAllChoices(
   if (currentBankNote == null) return []; // reached the end but found no valid solution in this branch
 
   const foundSolutions: Solution[] = [
-    ...generateAllChoices(partialSolution.clone(), [...availableBankNotes]), // find solutions ignoring currentBankNote
+    ...generateAllSolutions(partialSolution.clone(), [...availableBankNotes]), // find solutions ignoring currentBankNote
   ];
 
   while (
@@ -22,7 +22,7 @@ export function generateAllChoices(
     partialSolution.withdrawalValue
   ) {
     foundSolutions.push(
-      ...generateAllChoices(partialSolution.add(currentBankNote).clone(), [
+      ...generateAllSolutions(partialSolution.add(currentBankNote).clone(), [
         ...availableBankNotes,
       ]),
     );
