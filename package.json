@@ -2,22 +2,23 @@
   "name": "atm-machine",
   "version": "1.0.0",
   "private": true,
+  "author": "Leonardo Gurgel",
   "type": "module",
   "scripts": {
-    "dev": "npm run build && node dist/index.js",
     "build": "tsc",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "tsx src/index.ts",
+    "test": "node --import tsx --experimental-test-coverage --test test/**/*.test.ts"
   },
-  "author": "Leonardo Gurgel",
+  "dependencies": {
+    "@inquirer/prompts": "^7.2.0"
+  },
   "devDependencies": {
     "@gurgelio/eslint-config": "^1.0.0",
     "eslint": "^9.17.0",
     "prettier": "^3.4.2",
     "prettier-plugin-organize-imports": "^4.1.0",
     "prettier-plugin-packagejson": "^2.5.6",
+    "tsx": "^4.19.2",
     "typescript": "^5.7.2"
-  },
-  "dependencies": {
-    "@inquirer/prompts": "^7.2.0"
   }
 }

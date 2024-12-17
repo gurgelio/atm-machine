@@ -6,7 +6,6 @@ import {
 
 export class Solution {
   public withdrawalValue: number;
-  private _sum = 0; // cached sum value
   public bankNotes: Partial<
     Record<(typeof availableBankNotes)[number], number>
   > = {};
@@ -32,7 +31,6 @@ export class Solution {
   clone() {
     const cloned = new Solution(this.withdrawalValue);
     cloned.bankNotes = { ...this.bankNotes };
-    cloned._sum = this.sum();
 
     return cloned;
   }
@@ -44,7 +42,6 @@ export class Solution {
   add(bankNote: AvailableBankNote) {
     if (this.bankNotes[bankNote] == null) this.bankNotes[bankNote] = 0;
     this.bankNotes[bankNote] += 1;
-    this.updateSum();
     return this;
   }
 
@@ -52,7 +49,6 @@ export class Solution {
     if (this.bankNotes[bankNote] == null || this.bankNotes[bankNote] === 0)
       return this;
     this.bankNotes[bankNote] -= 1;
-    this.updateSum();
     return this;
   }
 
@@ -61,6 +57,8 @@ export class Solution {
   }
 
   highestBankNote() {
+    if (this.bankNotesAmount() === 0) throw "No bank notes!";
+
     let highestNote: AvailableBankNote = availableBankNotes[0];
     for (const [bankNote, amount] of Object.entries(this.bankNotes)) {
       if (amount == null || amount === 0) continue;
@@ -73,15 +71,11 @@ export class Solution {
   }
 
   sum() {
-    return this._sum;
-  }
-
-  private updateSum() {
     let sum = 0;
 
     for (const [bankNote, bankNoteAmount] of Object.entries(this.bankNotes)) {
       sum += Number.parseInt(bankNote) * bankNoteAmount;
     }
-    this._sum = sum;
+    return sum;
   }
 }
