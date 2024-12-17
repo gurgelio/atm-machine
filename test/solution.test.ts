@@ -70,7 +70,13 @@ describe("Solution", () => {
     test("from empty", () => {
       const solution = new Solution(300);
 
-      assert.throws(() => solution.highestBankNote());
+      assert.equal(solution.highestBankNote(), null);
+    });
+
+    test("from two", () => {
+      const solution = new Solution(300).add(2).add(50);
+
+      assert.equal(solution.highestBankNote(), 50);
     });
   });
 
@@ -118,7 +124,7 @@ describe("Solution", () => {
     test("from zero", () => {
       const solution = new Solution(100).remove(50);
 
-      assert.equal(solution.bankNotes[50], undefined);
+      assert.equal(solution.bankNotes[50], 0);
     });
 
     test("from one", () => {
