@@ -25,5 +25,5 @@ deno test
 ```
 
 ```bash
-deno task bench
+deno bench
 ```
