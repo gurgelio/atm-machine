@@ -1,6 +1,7 @@
 {
   "tasks": {
-    "dev": "deno run --allow-env --allow-run src/index.ts"
+    "dev": "deno run --allow-env --allow-run src/index.ts",
+    "bench": "deno bench bench/*.ts"
   },
   "imports": {
     "@std/assert": "jsr:@std/assert@1",
