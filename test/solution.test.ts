@@ -1,58 +1,58 @@
-import assert from "node:assert";
-import { describe, test } from "node:test";
-import { Solution } from "../src/solution.js";
+import { expect } from "jsr:@std/expect";
+import { describe, it } from "jsr:@std/testing/bdd";
+import { Solution } from "../src/solution.ts";
 
 describe("Solution", () => {
-  test("toString", () => {
+  it("toString", () => {
     const solution = new Solution(100).add(50).add(20);
 
-    assert.equal(solution.toString(), "1x R$50, 1x R$20");
+    expect(solution.toString()).toEqual("1x R$50, 1x R$20");
   });
 
   describe("clone", () => {
-    test("object is different", () => {
+    it("object is different", () => {
       const solution = new Solution(100);
       const clone = solution.clone();
 
-      assert.notEqual(solution, clone);
+      expect(clone).not.toBe(solution);
     });
 
-    test("bankNotes are different", () => {
+    it("bankNotes are different", () => {
       const solution = new Solution(100);
       const clone = solution.clone();
 
-      assert.notEqual(solution.bankNotes, clone.bankNotes);
+      expect(solution.bankNotes).not.toBe(clone.bankNotes);
     });
   });
 
   describe("isValid", () => {
-    test("valid", () => {
+    it("valid", () => {
       const solution = new Solution(340).add(200).add(100).add(20).add(20);
 
-      assert.ok(solution.isValid());
+      expect(solution.isValid()).toBeTruthy();
     });
 
-    test("under expected value", () => {
+    it("under expected value", () => {
       const solution = new Solution(340).add(200).add(100).add(20);
 
-      assert.equal(solution.isValid(), false);
+      expect(solution.isValid()).toBeFalsy();
     });
 
-    test("above expected value", () => {
+    it("above expected value", () => {
       const solution = new Solution(340).add(200).add(200).add(20).add(20);
 
-      assert.equal(solution.isValid(), false);
+      expect(solution.isValid()).toBeFalsy();
     });
   });
 
   describe("sum", () => {
-    test("zero", () => {
+    it("zero", () => {
       const solution = new Solution(300);
 
-      assert.equal(solution.sum(), 0);
+      expect(solution.sum()).toBe(0);
     });
 
-    test("all bank notes", () => {
+    it("all bank notes", () => {
       const solution = new Solution(300)
         .add(200)
         .add(100)
@@ -62,82 +62,82 @@ describe("Solution", () => {
         .add(5)
         .add(2);
 
-      assert.equal(solution.sum(), 387);
+      expect(solution.sum()).toBe(387);
     });
   });
 
   describe("highestBankNote", () => {
-    test("from empty", () => {
+    it("from empty", () => {
       const solution = new Solution(300);
 
-      assert.equal(solution.highestBankNote(), null);
+      expect(solution.highestBankNote()).toBeNull();
     });
 
-    test("from two", () => {
+    it("from two", () => {
       const solution = new Solution(300).add(2).add(50);
 
-      assert.equal(solution.highestBankNote(), 50);
+      expect(solution.highestBankNote()).toBe(50);
     });
   });
 
   describe("bankNotesAmount", () => {
-    test("from zero", () => {
+    it("from zero", () => {
       const solution = new Solution(195);
 
-      assert.equal(solution.bankNotesAmount(), 0);
+      expect(solution.bankNotesAmount()).toBe(0);
     });
 
-    test("from one", () => {
+    it("from one", () => {
       const solution = new Solution(195).add(20);
 
-      assert.equal(solution.bankNotesAmount(), 1);
+      expect(solution.bankNotesAmount()).toBe(1);
     });
 
-    test("from two", () => {
+    it("from two", () => {
       const solution = new Solution(195).add(20).add(2);
 
-      assert.equal(solution.bankNotesAmount(), 2);
+      expect(solution.bankNotesAmount()).toBe(2);
     });
   });
 
   describe("add", () => {
-    test("from zero", () => {
+    it("from zero", () => {
       const solution = new Solution(100).add(50);
 
-      assert.equal(solution.bankNotes[50], 1);
+      expect(solution.bankNotes[50]).toBe(1);
     });
 
-    test("from one", () => {
+    it("from one", () => {
       const solution = new Solution(100).add(50).add(50);
 
-      assert.equal(solution.bankNotes[50], 2);
+      expect(solution.bankNotes[50]).toBe(2);
     });
 
-    test("a different bank note", () => {
+    it("a different bank note", () => {
       const solution = new Solution(100).add(50).add(100);
 
-      assert.equal(solution.bankNotes[100], 1);
+      expect(solution.bankNotes[100]).toBe(1);
     });
   });
 
   describe("remove", () => {
-    test("from zero", () => {
+    it("from zero", () => {
       const solution = new Solution(100).remove(50);
 
-      assert.equal(solution.bankNotes[50], 0);
+      expect(solution.bankNotes[50]).toBe(0);
     });
 
-    test("from one", () => {
+    it("from one", () => {
       const solution = new Solution(100).add(50).remove(50);
 
-      assert.equal(solution.bankNotes[50], 0);
+      expect(solution.bankNotes[50]).toBe(0);
     });
 
-    test("from two", () => {
+    it("from two", () => {
       const solution = new Solution(100).add(50).add(50);
       solution.remove(50);
 
-      assert.equal(solution.bankNotes[50], 1);
+      expect(solution.bankNotes[50]).toBe(1);
     });
   });
 });

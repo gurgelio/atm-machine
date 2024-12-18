@@ -1,0 +1,7 @@
+{
+  "deno.enable": true,
+  "deno.path": "/home/gurja/.local/share/mise/installs/deno/2.1.4/bin/deno",
+  "eslint.enable": false,
+  "editor.defaultFormatter": "denoland.vscode-deno",
+  "prettier.enable": false
+}

@@ -1,5 +1,5 @@
-import { availableBankNotes as defaultAvailableBankNotes } from "./config.js";
-import type { Solution } from "./solution.js";
+import { availableBankNotes as defaultAvailableBankNotes } from "./config.ts";
+import type { Solution } from "./solution.ts";
 
 /**
  * @deprecated dangerous after 1000

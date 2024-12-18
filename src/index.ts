@@ -1,8 +1,8 @@
 import { number, select } from "@inquirer/prompts";
-import { findSolutions } from "./find-solutions.js";
-import type { Solution } from "./solution.js";
+import { findSolutions } from "./find-solutions.ts";
+import type { Solution } from "./solution.ts";
 
-main();
+await main();
 
 async function main() {
   const withdrawalValue = await getWithdrawalAmount();
@@ -31,13 +31,15 @@ export async function getWithdrawalAmount() {
 }
 
 export async function getSelectedSolution(choices: Solution[]) {
+  const sortedChoices = choices.sort(
+    (a, b) => a.bankNotesAmount() - b.bankNotesAmount(),
+  );
+
   return await select({
     message: "Escolha quais notas deseja sacar:",
-    choices: choices
-      .toSorted((a, b) => a.bankNotesAmount() - b.bankNotesAmount())
-      .map((choice) => ({
-        name: choice.toString(),
-        value: choice,
-      })),
+    choices: sortedChoices.map((choice) => ({
+      name: choice.toString(),
+      value: choice,
+    })),
   });
 }

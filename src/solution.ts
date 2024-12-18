@@ -2,7 +2,7 @@ import {
   type AvailableBankNote,
   availableBankNotes,
   currency,
-} from "./config.js";
+} from "./config.ts";
 
 export class Solution {
   public withdrawalValue: number;
@@ -27,13 +27,12 @@ export class Solution {
   }
 
   /**
-   *
    * @returns human readable string
    */
   toString() {
     return Object.entries(this.bankNotes)
       .filter(([, bankNoteAmount]) => bankNoteAmount > 0)
-      .toSorted(
+      .sort(
         ([bankNoteA], [bankNoteB]) =>
           Number.parseInt(bankNoteB) - Number.parseInt(bankNoteA),
       )
@@ -91,7 +90,6 @@ export class Solution {
   }
 
   /**
-   *
    * @returns the highest bank note used in this solution
    */
   highestBankNote() {
@@ -107,7 +105,6 @@ export class Solution {
   }
 
   /**
-   *
    * @returns the monetary sum
    */
   sum() {

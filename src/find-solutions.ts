@@ -2,10 +2,10 @@ import {
   type AvailableBankNote,
   availableBankNotes,
   maximumChoices,
-} from "./config.js";
-import { Solution } from "./solution.js";
+} from "./config.ts";
+import { Solution } from "./solution.ts";
 
-const sortedBankNotes = availableBankNotes.toSorted((a, b) => b - a);
+const sortedBankNotes = availableBankNotes.slice().sort((a, b) => b - a);
 
 /**
  *
@@ -16,7 +16,6 @@ export function findSolutions(withdrawalValue: number): Solution[] {
   const solutions: Solution[] = [];
   let currentSolution = solve(new Solution(withdrawalValue), sortedBankNotes);
 
-  console.log(currentSolution);
   while (solutions.length < maximumChoices) {
     if (currentSolution.isValid()) solutions.push(currentSolution.clone());
 

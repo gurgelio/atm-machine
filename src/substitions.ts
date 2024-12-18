@@ -1,4 +1,4 @@
-import type { AvailableBankNote } from "./config.js";
+import type { AvailableBankNote } from "./config.ts";
 
 /** @deprecated */
 export const substitutions: Partial<
