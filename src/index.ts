@@ -4,12 +4,15 @@ import type { Solution } from "./solution.ts";
 
 await main();
 
+// deno is not automatically exiting on eof
+Deno.exit();
+
 async function main() {
   const withdrawalValue = await getWithdrawalAmount();
 
   const choices = findSolutions(withdrawalValue);
   if (choices.length === 0) {
-    console.log("Nenhuma combinação encontrada para este valor!");
+    console.error("Nenhuma combinação encontrada para este valor!");
     return;
   }
 
