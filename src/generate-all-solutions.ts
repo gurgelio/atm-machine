@@ -1,4 +1,4 @@
-import { availableBankNotes as defaultAvailableBankNotes } from "./config.ts";
+import { AVAILABLE_BANK_NOTES as defaultAvailableBankNotes } from "./config.ts";
 import type { Solution } from "./solution.ts";
 
 /**
@@ -19,7 +19,7 @@ export function generateAllSolutions(
 
   while (
     partialSolution.sum() + currentBankNote <=
-    partialSolution.withdrawalValue
+      partialSolution.withdrawalValue
   ) {
     foundSolutions.push(
       ...generateAllSolutions(partialSolution.add(currentBankNote).clone(), [

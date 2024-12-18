@@ -1,19 +1,22 @@
 import {
+  AVAILABLE_BANK_NOTES,
   type AvailableBankNote,
-  availableBankNotes,
-  maximumChoices,
+  DEFAULT_MAXIMUM_CHOICES,
 } from "./config.ts";
 import { Solution } from "./solution.ts";
 
-const sortedBankNotes = availableBankNotes.slice().sort((a, b) => b - a);
-
 /**
- *
  * @param withdrawalValue the amount of money to be withdrawn from the atm
  * @returns an array of Solution, with max length defined by maximumChoices
  */
-export function findSolutions(withdrawalValue: number): Solution[] {
+export function findSolutions(
+  withdrawalValue: number | bigint,
+  maximumChoices = DEFAULT_MAXIMUM_CHOICES,
+  bankNotes = AVAILABLE_BANK_NOTES.slice(),
+): Solution[] {
   const solutions: Solution[] = [];
+  const sortedBankNotes = bankNotes.sort((a, b) => b - a);
+
   let currentSolution = solve(new Solution(withdrawalValue), sortedBankNotes);
 
   while (solutions.length < maximumChoices) {
@@ -39,13 +42,14 @@ export function findSolutions(withdrawalValue: number): Solution[] {
  */
 function solve(
   partialSolution: Solution,
-  availableBankNotes: readonly AvailableBankNote[],
+  availableBankNotes: AvailableBankNote[],
 ) {
   const bankNote = availableBankNotes[0];
   if (bankNote == null || partialSolution.isValid()) return partialSolution;
 
-  while (partialSolution.sum() + bankNote <= partialSolution.withdrawalValue)
+  while (partialSolution.sum() + bankNote <= partialSolution.withdrawalValue) {
     partialSolution.add(bankNote);
+  }
 
   return solve(partialSolution, availableBankNotes.slice(1));
 }

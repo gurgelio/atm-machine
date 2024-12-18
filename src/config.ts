@@ -1,6 +1,6 @@
-export const availableBankNotes = [2, 5, 10, 20, 50, 100, 200] as const;
-export type AvailableBankNote = (typeof availableBankNotes)[number];
+export const AVAILABLE_BANK_NOTES = [2, 5, 10, 20, 50, 100, 200];
+export type AvailableBankNote = (typeof AVAILABLE_BANK_NOTES)[number];
 
-export const currency = "R$";
+export const DEFAULT_CURRENCY = "R$";
 
-export const maximumChoices = 3;
+export const DEFAULT_MAXIMUM_CHOICES = 3;

@@ -1,17 +1,10 @@
-import {
-  type AvailableBankNote,
-  availableBankNotes,
-  currency,
-} from "./config.ts";
+import { AVAILABLE_BANK_NOTES, DEFAULT_CURRENCY } from "./config.ts";
 
 export class Solution {
-  public withdrawalValue: number;
-  public bankNotes = availableBankNotes.reduce(
-    (obj, note) => ({ ...obj, [note]: 0 }),
-    {},
-  ) as Record<AvailableBankNote, number>;
+  public withdrawalValue: number | bigint;
+  public bankNotes = {} as Record<number, number>;
 
-  constructor(withdrawalValue: number) {
+  constructor(withdrawalValue: number | bigint) {
     this.withdrawalValue = withdrawalValue;
   }
 
@@ -20,7 +13,7 @@ export class Solution {
    * @returns boolean
    */
   equals(other: Solution) {
-    for (const key of availableBankNotes) {
+    for (const key of AVAILABLE_BANK_NOTES) {
       if (other.bankNotes[key] !== this.bankNotes[key]) return false;
     }
     return true;
@@ -38,7 +31,7 @@ export class Solution {
       )
       .map(
         ([bankNote, bankNoteAmount]) =>
-          `${bankNoteAmount}x ${currency}${bankNote}`,
+          `${bankNoteAmount}x ${DEFAULT_CURRENCY}${bankNote}`,
       )
       .join(", ");
   }
@@ -65,7 +58,9 @@ export class Solution {
    * @param bankNote the bank note to be added
    * @returns itself for method chaining
    */
-  add(bankNote: AvailableBankNote) {
+  add(bankNote: number) {
+    if (this.bankNotes[bankNote] == null) this.bankNotes[bankNote] = 0;
+
     this.bankNotes[bankNote] += 1;
     return this;
   }
@@ -75,8 +70,10 @@ export class Solution {
    * @param bankNote the bank note to be removed
    * @returns itself for method chaining
    */
-  remove(bankNote: AvailableBankNote) {
+  remove(bankNote: number) {
+    if (this.bankNotes[bankNote] == null) this.bankNotes[bankNote] = 0;
     if (this.bankNotes[bankNote] === 0) return this;
+
     this.bankNotes[bankNote] -= 1;
     return this;
   }
@@ -86,20 +83,20 @@ export class Solution {
    * @returns boolean
    */
   isValid() {
-    return this.sum() === this.withdrawalValue;
+    return this.sum() == this.withdrawalValue;
   }
 
   /**
    * @returns the highest bank note used in this solution
    */
   highestBankNote() {
-    let highestNote: AvailableBankNote | null = null;
+    let highestNote: number | null = null;
     for (const [bankNote, amount] of Object.entries(this.bankNotes)) {
       if (amount === 0) continue;
       highestNote = Math.max(
         Number.parseInt(bankNote),
         highestNote ?? 0,
-      ) as AvailableBankNote;
+      );
     }
     return highestNote;
   }
