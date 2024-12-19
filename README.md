@@ -33,6 +33,3 @@ deno bench
 O resultado de um benchmark foi colocado como exemplog em
 [logs/bench.log](logs/bench.log)
 
-## Lógica por Trás do Código
-
-Para encontrar a quantidade de soluções
