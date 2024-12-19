@@ -6,7 +6,11 @@ import {
 import { Solution } from "./solution.ts";
 
 /**
+ * Finds different combinations of bank notes for the given withdrawalValue through the {@link https://en.wikipedia.org/wiki/Greedy_algorithm | greedy algorithm}.
+ *
  * @param withdrawalValue the amount of money to be withdrawn from the atm
+ * @param [maximumChoices=DEFAULT_MAXIMUM_CHOICES] maximum choices to be returned (less makes it significantly faster)
+ * @param [bankNotes=AVAILABLE_BANK_NOTES.slice()] an array of valid bank notes
  * @returns an array of Solution, with max length defined by maximumChoices
  */
 export function findSolutions(

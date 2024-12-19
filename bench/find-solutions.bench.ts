@@ -1,4 +1,5 @@
 import { findSolutions } from "../src/find-solutions.ts";
+import humanFormat from "human-format";
 
 const values = [
   1_000,
@@ -16,7 +17,7 @@ for (const i of values) {
   for (const j of solutions) {
     Deno.bench({
       group: `[BRL] find ${j}`,
-      name: `for ${i}`,
+      name: `for ${humanFormat(i)}`,
       baseline: true,
       fn: () => {
         findSolutions(i, j);
@@ -65,7 +66,7 @@ for (const i of zimbabweanValues) {
   for (const j of solutions) {
     Deno.bench({
       group: `[ZWL] find ${j}`,
-      name: `for ${i}`,
+      name: `for ${humanFormat(Number(i))}`,
       baseline: true,
       fn: () => {
         findSolutions(i, j, ZIMBABWEAN_BANK_NOTES);

@@ -6,7 +6,8 @@
     "jsr:@std/expect@*": "1.0.10",
     "jsr:@std/internal@^1.0.5": "1.0.5",
     "jsr:@std/testing@*": "1.0.7",
-    "npm:@inquirer/prompts@^7.2.0": "7.2.0_@types+node@22.10.2"
+    "npm:@inquirer/prompts@^7.2.0": "7.2.0_@types+node@22.10.2",
+    "npm:human-format@^1.2.1": "1.2.1"
   },
   "jsr": {
     "@std/assert@1.0.9": {
@@ -218,6 +219,9 @@
         "tmp"
       ]
     },
+    "human-format@1.2.1": {
+      "integrity": "sha512-o5Ldz62VWR5lYUZ8aVQaLKiN37NsHnmk3xjMoUjza3mGkk8MvMofgZT0T6HKSCKSJIir+AWk9Dx8KhxvZAUgCg=="
+    },
     "iconv-lite@0.4.24": {
       "integrity": "sha512-v3MXnZAcvnywkTUEZomIActle7RXXeedOR31wwl7VlyoXO4Qi9arvSenNQWne1TcRwhCL1HwLI21bEqdpj8/rA==",
       "dependencies": [
@@ -280,7 +284,8 @@
   "workspace": {
     "dependencies": [
       "jsr:@std/assert@1",
-      "npm:@inquirer/prompts@^7.2.0"
+      "npm:@inquirer/prompts@^7.2.0",
+      "npm:human-format@^1.2.1"
     ]
   }
 }

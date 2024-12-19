@@ -1,0 +1,116 @@
+    CPU | AMD Ryzen 7 5700G with Radeon Graphics
+Runtime | Deno 2.1.4 (x86_64-unknown-linux-gnu)
+
+file:///home/gurja/Desktop/atm-machine/bench/find-solutions.bench.ts
+
+benchmark   time/iter (avg)        iter/s      (min … max)           p75      p99     p995
+----------- ----------------------------- --------------------- --------------------------
+
+group [BRL] find 1
+for 1 k              6.6 µs       151,700 (  4.7 µs … 450.0 µs)   6.4 µs  14.4 µs  62.1 µs
+for 10 k            24.7 µs        40,560 ( 20.7 µs … 181.8 µs)  23.8 µs  83.4 µs  88.5 µs
+for 100 k          200.0 µs         5,001 (170.9 µs … 288.8 µs) 198.6 µs 269.6 µs 274.5 µs
+for 1 M              2.1 ms         471.3 (  1.9 ms …   6.2 ms)   2.2 ms   3.0 ms   5.4 ms
+for 10 M            19.9 ms          50.4 ( 19.4 ms …  20.7 ms)  20.1 ms  20.7 ms  20.7 ms
+for 100 M          200.5 ms           5.0 (194.7 ms … 213.3 ms) 203.3 ms 213.3 ms 213.3 ms
+for 1 G               2.1 s           0.5 (   2.0 s …    2.1 s)    2.1 s    2.1 s    2.1 s
+
+summary
+  for 1 k
+     3.74x faster than for 10 k
+    30.32x faster than for 100 k
+   321.80x faster than for 1 M
+     3011x faster than for 10 M
+    30410x faster than for 100 M
+   311400x faster than for 1 G
+
+group [BRL] find 10
+for 1 k             47.4 µs        21,120 ( 41.2 µs … 323.0 µs)  45.5 µs 128.7 µs 139.9 µs
+for 10 k            59.0 µs        16,940 ( 51.6 µs … 257.7 µs)  56.9 µs 139.8 µs 147.2 µs
+for 100 k          244.0 µs         4,099 (218.5 µs … 568.9 µs) 237.0 µs 371.6 µs 405.4 µs
+for 1 M              2.1 ms         473.0 (  2.0 ms …   2.6 ms)   2.1 ms   2.5 ms   2.5 ms
+for 10 M            20.6 ms          48.5 ( 20.1 ms …  21.6 ms)  20.8 ms  21.6 ms  21.6 ms
+for 100 M          204.4 ms           4.9 (202.9 ms … 206.9 ms) 204.6 ms 206.9 ms 206.9 ms
+for 1 G               2.0 s           0.5 (   2.0 s …    2.1 s)    2.1 s    2.1 s    2.1 s
+
+summary
+  for 1 k
+     1.25x faster than for 10 k
+     5.15x faster than for 100 k
+    44.65x faster than for 1 M
+   435.80x faster than for 10 M
+     4316x faster than for 100 M
+    43230x faster than for 1 G
+
+group [BRL] find 100
+for 1 k            960.0 µs         1,042 (822.1 µs …   3.1 ms) 988.7 µs   1.9 ms   2.7 ms
+for 10 k           650.1 µs         1,538 (576.3 µs …   1.3 ms) 700.2 µs 951.9 µs   1.0 ms
+for 100 k          773.4 µs         1,293 (699.7 µs …   1.3 ms) 809.0 µs   1.1 ms   1.2 ms
+for 1 M              2.6 ms         384.3 (  2.5 ms …   3.5 ms)   2.7 ms   3.0 ms   3.0 ms
+for 10 M            21.6 ms          46.3 ( 20.4 ms …  26.4 ms)  21.6 ms  26.4 ms  26.4 ms
+for 100 M          194.9 ms           5.1 (193.3 ms … 199.3 ms) 195.2 ms 199.3 ms 199.3 ms
+for 1 G               2.0 s           0.5 (   1.9 s …    2.1 s)    2.0 s    2.1 s    2.1 s
+
+summary
+  for 1 k
+     1.48x slower than for 10 k
+     1.24x slower than for 100 k
+     2.71x faster than for 1 M
+    22.52x faster than for 10 M
+   203.00x faster than for 100 M
+     2094x faster than for 1 G
+
+group [ZWL] find 1
+for 10 G             6.6 µs       152,500 (  6.4 µs …   7.3 µs)   6.5 µs   7.3 µs   7.3 µs
+for 1 T             13.2 µs        75,520 ( 12.7 µs … 266.4 µs)  13.0 µs  21.5 µs  23.4 µs
+for 1 P              7.1 µs       140,500 (  7.1 µs …   7.3 µs)   7.1 µs   7.3 µs   7.3 µs
+for 10 P            40.8 µs        24,490 ( 38.9 µs … 188.2 µs)  40.7 µs  46.7 µs  48.6 µs
+for 1 E              3.7 ms         272.9 (  3.6 ms …   3.8 ms)   3.7 ms   3.8 ms   3.8 ms
+for 10 E            36.7 ms          27.2 ( 36.5 ms …  37.4 ms)  36.8 ms  37.4 ms  37.4 ms
+for 100 E          366.2 ms           2.7 (365.1 ms … 368.6 ms) 366.3 ms 368.6 ms 368.6 ms
+
+summary
+  for 10 G
+     1.09x faster than for 1 P
+     2.02x faster than for 1 T
+     6.23x faster than for 10 P
+   559.00x faster than for 1 E
+     5605x faster than for 10 E
+    55860x faster than for 100 E
+
+group [ZWL] find 10
+for 10 G             6.7 µs       149,300 (  6.7 µs …   6.8 µs)   6.7 µs   6.8 µs   6.8 µs
+for 1 T             14.0 µs        71,270 ( 13.4 µs … 166.2 µs)  13.9 µs  18.9 µs  19.6 µs
+for 1 P              7.3 µs       136,300 (  7.3 µs …   7.4 µs)   7.3 µs   7.4 µs   7.4 µs
+for 10 P            40.8 µs        24,480 ( 39.0 µs … 238.8 µs)  40.7 µs  47.3 µs  68.1 µs
+for 1 E              3.7 ms         271.3 (  3.6 ms …   3.9 ms)   3.7 ms   3.9 ms   3.9 ms
+for 10 E            36.7 ms          27.3 ( 36.4 ms …  37.6 ms)  36.7 ms  37.6 ms  37.6 ms
+for 100 E          366.2 ms           2.7 (365.2 ms … 367.6 ms) 366.5 ms 367.6 ms 367.6 ms
+
+summary
+  for 10 G
+     1.10x faster than for 1 P
+     2.10x faster than for 1 T
+     6.10x faster than for 10 P
+   550.40x faster than for 1 E
+     5480x faster than for 10 E
+    54690x faster than for 100 E
+
+group [ZWL] find 100
+for 10 G             6.7 µs       149,100 (  6.7 µs …   6.8 µs)   6.7 µs   6.8 µs   6.8 µs
+for 1 T             14.1 µs        71,080 ( 13.5 µs … 233.6 µs)  13.9 µs  19.0 µs  19.6 µs
+for 1 P              7.4 µs       135,800 (  7.3 µs …   7.6 µs)   7.4 µs   7.6 µs   7.6 µs
+for 10 P            40.8 µs        24,500 ( 39.0 µs … 215.6 µs)  40.8 µs  46.3 µs  47.0 µs
+for 1 E              3.7 ms         270.5 (  3.6 ms …   3.8 ms)   3.7 ms   3.8 ms   3.8 ms
+for 10 E            36.7 ms          27.3 ( 36.6 ms …  36.8 ms)  36.7 ms  36.8 ms  36.8 ms
+for 100 E          366.7 ms           2.7 (365.6 ms … 370.2 ms) 367.2 ms 370.2 ms 370.2 ms
+
+summary
+  for 10 G
+     1.10x faster than for 1 P
+     2.10x faster than for 1 T
+     6.09x faster than for 10 P
+   551.40x faster than for 1 E
+     5469x faster than for 10 E
+    54690x faster than for 100 E
+
