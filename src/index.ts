@@ -33,16 +33,13 @@ export async function getWithdrawalAmount() {
   return response;
 }
 
-export async function getSelectedSolution(choices: Solution[]) {
-  const sortedChoices = choices.sort(
-    (a, b) => a.bankNotesAmount() - b.bankNotesAmount(),
-  );
+export async function getSelectedSolution(solutions: Solution[]) {
+  const choices = solutions
+    .toSorted((a, b) => a.bankNotesAmount() - b.bankNotesAmount())
+    .map((c) => ({ name: c.toString(), value: c }));
 
   return await select({
     message: "Escolha quais notas deseja sacar:",
-    choices: sortedChoices.map((choice) => ({
-      name: choice.toString(),
-      value: choice,
-    })),
+    choices,
   });
 }

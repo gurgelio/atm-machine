@@ -16,10 +16,10 @@ import { Solution } from "./solution.ts";
 export function findSolutions(
   withdrawalValue: number | bigint,
   maximumChoices = DEFAULT_MAXIMUM_CHOICES,
-  bankNotes = AVAILABLE_BANK_NOTES.slice(),
+  bankNotes = AVAILABLE_BANK_NOTES,
 ): Solution[] {
   const solutions: Solution[] = [];
-  const sortedBankNotes = bankNotes.sort((a, b) => b - a);
+  const sortedBankNotes = bankNotes.toSorted((a, b) => b - a);
 
   let currentSolution = solve(new Solution(withdrawalValue), sortedBankNotes);
 

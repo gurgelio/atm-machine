@@ -25,7 +25,7 @@ export class Solution {
   toString() {
     return Object.entries(this.bankNotes)
       .filter(([, bankNoteAmount]) => bankNoteAmount > 0)
-      .sort(
+      .toSorted(
         ([bankNoteA], [bankNoteB]) =>
           Number.parseInt(bankNoteB) - Number.parseInt(bankNoteA),
       )

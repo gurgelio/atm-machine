@@ -50,7 +50,7 @@ const ZIMBABWEAN_BANK_NOTES = [
   20_000_000_000_000,
   50_000_000_000_000,
   100_000_000_000_000,
-].sort();
+];
 
 const zimbabweanValues = [
   1_000_000_000_0, // US$ 0,01
